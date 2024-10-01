@@ -8,22 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #6a0dad; /* Purple background */
+            background-color: #0a192f; /* Purple background */
             font-family: 'Source Code Pro', monospace; /* Cybersecurity-themed font */
             color: #fff; /* White text for better contrast */
         }
         .navbar {
             background-color: #1e3d59;
-            border-bottom: 2px solid #ffd700; /* Gold bottom border */
+            border-bottom: 2px solid #3e9499; /* Gold bottom border */
         }
-        .navbar-brand img {
-            height: 40px; /* Adjust the height of the logo */
-        }
+
         .navbar-nav .nav-link {
             color: #fff;
         }
         .navbar-nav .nav-link:hover {
-            color: #ffd700; /* Gold color on hover */
+            color: #3e9499; /* Gold color on hover */
         }
         .container-fluid {
             padding: 20px 40px; /* Add padding to the container */
@@ -39,14 +37,14 @@
             border-bottom: 1px solid #fff; /* Add a subtle border */
         }
         .btn-primary {
-            background-color: #ff6f61; /* A contrasting color for buttons */
+            background-color: #4c576c; /* A contrasting color for buttons */
             border: none;
         }
         .btn-primary:hover {
-            background-color: #ff4f41; /* Darker shade on hover */
+            background-color: #7c869c; /* Darker shade on hover */
         }
         h2, h3, h4 {
-            color: #ffd700; /* Gold color for headings */
+            color: #3e9499; /* Gold color for headings */
         }
         .form-control, .form-control:focus {
             background-color: #1e3d59;
@@ -76,10 +74,9 @@
 <body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#">
         <!-- Logo Placeholder -->
-<img src="/templates/images/CSCLogo.png" alt="CSC Logo">
-    </a>
+{#<img src="/images/CSCLogo.png" alt="CSC Logo">#}
+Public Relations committee
     <!-- Toggle button for mobile view -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon" style="color: #fff;"></span>
@@ -124,7 +121,6 @@
       </div>
       {% endif %}
     {% endwith %}
-    <h3>Tasks</h3>
     <div class="row">
         <!-- Tasks Column -->
         <div class="col-md-4">

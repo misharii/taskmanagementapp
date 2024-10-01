@@ -8,10 +8,21 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # MySQL configurations
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'taskmanagement'
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = ''
+# app.config['MYSQL_DB'] = 'taskmanagement'
+
+app.config['MYSQL_HOST'] = 'cxmgkzhk95kfgbq4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
+app.config['MYSQL_USER'] = 'imgp191to35njm0n'
+app.config['MYSQL_PASSWORD'] = 'y31kjtd1vthqiabl'
+app.config['MYSQL_DB'] = 'ecgmz6dlipnm923d'
+app.config['MYSQL_PORT'] = 3306
+
+# app.config['MYSQL_HOST'] = 'cxmgkzhk95kfgbq4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
+# app.config['MYSQL_USER'] = 'imgp191to35njm0n'
+# app.config['MYSQL_PASSWORD'] = 'y31kjtd1vthqiabl'
+# app.config['MYSQL_DB'] = 'ecgmz6dlipnm923d'
 
 mysql = MySQL(app)
 
