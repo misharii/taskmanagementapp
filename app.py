@@ -29,48 +29,50 @@ mysql = MySQL(app)
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     msg = ''
-    # Check if "username" and "password" POST requests exist
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        username = request.form['username']
-        password = request.form['password']
-        # Fetch user from database
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM users WHERE username = %s AND password = %s', (username, password,))
-        account = cursor.fetchone()
-        # If account exists
-        if account:
-            # Create session data
-            session['loggedin'] = True
-            session['id'] = account['id']
-            session['username'] = account['username']
-            session['is_admin'] = account['is_admin']
-            return redirect(url_for('home'))
-        else:
-            msg = 'Incorrect username/password!'
+    try:
+        if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+            username = request.form['username']
+            password = request.form['password']
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('SELECT * FROM users WHERE username = %s AND password = %s', (username, password,))
+            account = cursor.fetchone()
+            if account:
+                session['loggedin'] = True
+                session['id'] = account['id']
+                session['username'] = account['username']
+                session['is_admin'] = account['is_admin']
+                return redirect(url_for('home'))
+            else:
+                msg = 'Incorrect username/password!'
+    except MySQLdb.Error as e:
+        print(f"Error: {e}")
+        msg = 'Database error occurred.'
     return render_template('login.html', msg=msg)
+
 
 @app.route('/')
 def home():
-    # Check if user is logged in
     if 'loggedin' in session:
-        # Fetch tasks from database
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('''
-            SELECT tasks.*, users.username AS assigned_user
-            FROM tasks
-            LEFT JOIN users ON tasks.assigned_to = users.id
-        ''')
-        tasks = cursor.fetchall()
-        # Group tasks by status
-        tasks_by_status = {'task': [], 'doing': [], 'done': []}
-        for task in tasks:
-            tasks_by_status[task['status']].append(task)
-        return render_template(
-            'home.html',
-            username=session['username'],
-            is_admin=session['is_admin'],
-            tasks_by_status=tasks_by_status
-        )
+        try:
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('''
+                SELECT tasks.*, users.username AS assigned_user
+                FROM tasks
+                LEFT JOIN users ON tasks.assigned_to = users.id
+            ''')
+            tasks = cursor.fetchall()
+            tasks_by_status = {'task': [], 'doing': [], 'done': []}
+            for task in tasks:
+                tasks_by_status[task['status']].append(task)
+            return render_template(
+                'home.html',
+                username=session['username'],
+                is_admin=session['is_admin'],
+                tasks_by_status=tasks_by_status
+            )
+        except MySQLdb.Error as e:
+            flash(f"Error: {e}")
+            return redirect(url_for('login'))
     return redirect(url_for('login'))
 
 @app.route('/add_task', methods=['POST'])
