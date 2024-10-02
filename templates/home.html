@@ -87,9 +87,24 @@ Public Relations committee
             <li class="nav-item">
                 <span class="nav-link">Welcome, {{ username }}!</span>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
             </li>
+            <!-- Admin Actions in Navbar -->
+{% if is_admin %}
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Admin Actions
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminDropdown">
+        <form action="{{ url_for('backup_db') }}" method="get">
+            <button type="submit" class="dropdown-item">Backup Database</button>
+        </form>
+    </div>
+</li>
+{% endif %}
+
         </ul>
     </div>
 </nav>
