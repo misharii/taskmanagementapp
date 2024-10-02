@@ -1,9 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a192f;
+            font-family: 'Source Code Pro', monospace;
+            color: #fff;
+        }
+        .container {
+            background-color: #1e3d59;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .btn-primary {
+            background-color: #4c576c;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #7c869c;
+        }
+        .form-control, .form-control:focus {
+            background-color: #1e3d59;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+        .alert-danger {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+        }
+        h2 {
+            color: #3e9499;
+        }
+    </style>
 </head>
 <body>
 <div class="container" style="max-width: 500px; margin-top: 50px;">
@@ -23,5 +60,9 @@
         <button type="submit" class="btn btn-primary btn-block">Login</button>
     </form>
 </div>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

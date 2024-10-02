@@ -147,8 +147,21 @@ Public Relations committee
                                 <option value="done">Done</option>
                             </select>
                         </div>
+
                         <button type="submit" class="btn btn-primary btn-block">Update Status</button>
                     </form>
+                <br>
+                <div>
+
+<form action="{{ url_for('delete_task', task_id=task.id) }}" method="post">
+    <button type="submit" class="btn btn-danger btn-block">Delete Task</button>
+</form>
+
+                </div>
+                {% if is_admin %}
+
+{% endif %}
+
                 </div>
             </div>
             <!-- Modal for full description -->
